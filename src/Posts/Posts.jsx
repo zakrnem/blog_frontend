@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
 import styles from "./Posts.module.css";
+import { v4 as uuidv4 } from 'uuid';
 
 function Posts(page) {
-  const apiURL = import.meta.env.VITE_API_URL + "/posts";
   const [blogData, setblogData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (error !== null) console.log(error);
+  }, [error]);
+
+  useEffect(() => {
+    const apiURL = import.meta.env.VITE_API_URL + "/posts/page/" + page.page;
     fetch(apiURL, { method: "get" })
       .then((response) => {
         if (!response.ok) {
@@ -24,7 +29,8 @@ function Posts(page) {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [page]);
+
 
   return (
     <div className={styles.posts}>
@@ -35,17 +41,18 @@ function Posts(page) {
         </div>
       )}
       <h2>Posts</h2>
-      {Object.keys(blogData).map((key) => {
-        const title = blogData[key].title;
-        const summary = blogData[key].summary;
-        const date = blogData[key].date;
-        const visible = blogData[key].visible;
-        const commentsNumber = blogData[key].commentsNumber;
-        const url = blogData[key].url;
+      {Object.keys(blogData).map((index) => {
+        const key = uuidv4()
+        const title = blogData[index].title;
+        const summary = blogData[index].summary;
+        const date = blogData[index].date;
+        const visible = blogData[index].visible;
+        const commentsNumber = blogData[index].commentsNumber;
+        const url = blogData[index].url;
         return (
-          <>
+          <div key={key}>
             {visible && (
-              <div key={key} className={styles.post}>
+              <div className={styles.post}>
                 <a href={url}>
                   <div className={styles.title}>{title}</div>
                 </a>
@@ -56,7 +63,7 @@ function Posts(page) {
                 </div>
               </div>
             )}
-          </>
+          </ div>
         );
       })}
     </div>
