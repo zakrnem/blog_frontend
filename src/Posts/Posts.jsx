@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import styles from "./Posts.module.css";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 function Posts(page) {
-  const [blogData, setblogData] = useState([]);
+  const [blogData, setBlogData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -22,7 +22,7 @@ function Posts(page) {
         }
         return response.json();
       })
-      .then((actualData) => setblogData(actualData))
+      .then((actualData) => setBlogData(actualData))
       .catch((err) => {
         setError(err.message);
       })
@@ -31,18 +31,17 @@ function Posts(page) {
       });
   }, [page]);
 
-
   return (
     <div className={styles.posts}>
+      <h2>Posts</h2>
       {loading && blogData.length < 1 && (
         <div className={styles.loading}>
           <div className={styles.loader} />
           Loading
         </div>
       )}
-      <h2>Posts</h2>
       {Object.keys(blogData).map((index) => {
-        const key = uuidv4()
+        const key = uuidv4();
         const title = blogData[index].title;
         const summary = blogData[index].summary;
         const date = blogData[index].date;
@@ -63,7 +62,7 @@ function Posts(page) {
                 </div>
               </div>
             )}
-          </ div>
+          </div>
         );
       })}
     </div>
