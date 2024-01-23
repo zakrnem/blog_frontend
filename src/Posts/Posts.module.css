@@ -1,0 +1,32 @@
+.posts {
+  color: green;
+}
+
+.loading {
+  display: grid;
+  gap: 1.25rem;
+  font-size: 2.5rem;
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+  font-weight: 700;
+}
+
+.loader {
+  margin: auto;
+  border: 2vw solid var(--light-white);
+  border-radius: 50%;
+  border-top: 2vw solid var(--main-color);
+  width: 15vw;
+  height: 15vw;
+  animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
