@@ -1,6 +1,7 @@
 import Homepage from "../Homepage/Homepage";
 import Post from "../Post/Post";
 import CommentForm from "../CommentForm/CommentForm";
+import LoginForm from "../LoginForm/LoginForm"
 
 function Root() {
   const apiURL =
@@ -8,7 +9,8 @@ function Root() {
   return (
     <div>
       <h1>Root</h1>
-      <CommentForm apiURL={apiURL} />
+      <LoginForm />
+      {/* <CommentForm apiURL={apiURL} /> */}
       {/* <Post apiURL={apiURL} /> */}
       {/* <Homepage /> */}
     </div>
