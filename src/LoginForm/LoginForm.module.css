@@ -1,8 +1,8 @@
 .form {
-    display: grid;
+  display: grid;
 }
 
 .title {
-    font-weight: bolder;
-    font-size: 2rem;
+  font-weight: bolder;
+  font-size: 2rem;
 }

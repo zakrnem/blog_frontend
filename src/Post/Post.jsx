@@ -34,15 +34,15 @@ function Post(apiURL) {
   const title = postData.title;
   const content = postData.content;
   const dbDate = postData.createdAt;
-  let parsedDate
-  let date
-  let comments
-  const dataLength = Object.keys(postData).length
+  let parsedDate;
+  let date;
+  let comments;
+  const dataLength = Object.keys(postData).length;
   if (dataLength > 0) {
     parsedDate = new Date(dbDate);
     date = format(parsedDate, "MM-dd-yyyy");
     comments = postData.comments;
-  }  
+  }
 
   return (
     <>
@@ -69,8 +69,7 @@ function Post(apiURL) {
               <div className={styles.commentDate}>{commentDate}</div>
             </div>
           );
-        })
-      }
+        })}
     </>
   );
 }

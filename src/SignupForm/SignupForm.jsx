@@ -1,17 +1,25 @@
-import styles from "./LoginForm.module.css";
+import styles from "./SignupForm.module.css";
 
-function LoginForm() {
+function SignupForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
+    const firstName = e.target.querySelector("#firstName").value;
+    const lastName = e.target.querySelector("#lastName").value;
     const username = e.target.querySelector("#username").value;
     const password = e.target.querySelector("#password").value;
-    console.log([username, password]);
+    console.log({ firstName, lastName, username, password });
     // Add fetch logic
   };
   return (
     <>
-      <div className={styles.title}>Log in to your account</div>
+      <div className={styles.title}>Create an account</div>
       <form onSubmit={handleSubmit} className={styles.form}>
+        <label htmlFor="firstName">First Name: </label>
+        <input type="text" id="firstName" placeholder="Enter your first name" />
+
+        <label htmlFor="lastName">Last Name: </label>
+        <input type="text" id="lastName" placeholder="Enter your last name" />
+
         <label htmlFor="username">Username: </label>
         <input type="text" id="username" placeholder="Enter your username" />
 
@@ -28,4 +36,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default SignupForm;
