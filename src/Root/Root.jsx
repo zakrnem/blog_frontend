@@ -13,8 +13,10 @@ function Root() {
   const [apiURL, setApiURL] = useState(
     "http://localhost:3000/api/client/posts/65a67b1e62e3bbd681d2d36d",
   );
-  const [activeElement, setActiveElement] = useState('home');
-  //useEffect(() => console.log(activeElement))
+  const [activeElement, setActiveElement] = useState("");
+  useEffect(() => {
+    console.log(activeElement)
+  }, [activeElement])
   return (
     <>
       <Header
@@ -24,10 +26,10 @@ function Root() {
       <Outlet />
 
       <Routes errorElement={<ErrorPage />}>
-        <Route path="" element={<Homepage apiURL={apiURL} />} />
-        <Route path="/home" element={<Homepage apiURL={apiURL} />} />
-        <Route path="/signup" element={<SignupForm />} />
-        <Route path="/login" element={<LoginForm />} />
+        <Route path="" element={<Homepage apiURL={apiURL} setActiveElement={setActiveElement} />} />
+        <Route path="/home" element={<Homepage apiURL={apiURL} setActiveElement={setActiveElement} />} />
+        <Route path="/signup" element={<SignupForm setActiveElement={setActiveElement} />} />
+        <Route path="/login" element={<LoginForm setActiveElement={setActiveElement} />} />
       </Routes>
     </>
   );

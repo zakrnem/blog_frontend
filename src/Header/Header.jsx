@@ -1,8 +1,8 @@
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
-import {useEffect} from "react"
+import { useEffect } from "react";
 
-function Header({activeElement, setActiveElement}) {
+function Header({ activeElement, setActiveElement }) {
   const loggedIn = false;
   return (
     <div className={styles.header}>

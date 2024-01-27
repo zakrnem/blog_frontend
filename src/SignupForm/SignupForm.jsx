@@ -1,6 +1,10 @@
+import { useEffect } from "react";
 import styles from "./SignupForm.module.css";
 
-function SignupForm() {
+function SignupForm({ setActiveElement }) {
+  useEffect(() => {
+    setActiveElement("signup")
+  })
   const handleSubmit = (e) => {
     e.preventDefault();
     const firstName = e.target.querySelector("#firstName").value;

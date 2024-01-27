@@ -12,9 +12,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --light-white: #ffffff;
-  --main-color: rgb(112, 214, 255);
-  --hover-color: rgb(172, 221, 240);
-  --active-color: #b5b527;
+  --main-color: #2197F3;
+  --light-main-color: #d3eafa;
+  --hover-color: #ecf3f8;
+  --active-color: #2197F3;
+  --black: #213547;
+  --blue2: #3F51B5;
 }
 
 a {
@@ -69,7 +72,7 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: var(--black);
     background-color: #ffffff;
   }
   a:hover {

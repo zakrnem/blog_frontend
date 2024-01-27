@@ -23,22 +23,25 @@
   gap: 0.5rem;
 }
 
+.active {
+  background-color: var(--light-main-color);
+}
+
 .links > a {
+  color: var(--black);
   text-decoration: none;
   padding: 1.5rem 0.5rem;
   border-radius: 0.5rem;
 }
 
 .links > a:hover {
+  color: var(--black);
   background-color: var(--hover-color);
   transition: background-color ease-in 0.25s;
 }
 
 .links > a:active {
-  color: var(--active-color);
+  color: var(--black);
+  background-color: var(--active-color);
   transition: color ease-in-out 0.05s;
-}
-
-.active {
-  background-color: var(--hover-color);
 }
