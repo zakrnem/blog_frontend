@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import styles from "./LoginForm.module.css";
 
-function LoginForm({setActiveElement}) {
+function LoginForm({ setActiveElement }) {
   useEffect(() => {
-    setActiveElement("login")
-  })
-  
+    setActiveElement("login");
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const username = e.target.querySelector("#username").value;
@@ -29,7 +29,6 @@ function LoginForm({setActiveElement}) {
             placeholder="Enter your password"
           />
         </div>
-
         <input className={styles.submit} type="submit" />
       </form>
     </div>

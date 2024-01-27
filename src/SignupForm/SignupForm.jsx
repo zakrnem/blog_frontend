@@ -3,8 +3,8 @@ import styles from "./SignupForm.module.css";
 
 function SignupForm({ setActiveElement }) {
   useEffect(() => {
-    setActiveElement("signup")
-  })
+    setActiveElement("signup");
+  });
   const handleSubmit = (e) => {
     e.preventDefault();
     const firstName = e.target.querySelector("#firstName").value;
@@ -15,28 +15,36 @@ function SignupForm({ setActiveElement }) {
     // Add fetch logic
   };
   return (
-    <>
+    <div className={styles.signup}>
       <div className={styles.title}>Create an account</div>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <label htmlFor="firstName">First Name: </label>
-        <input type="text" id="firstName" placeholder="Enter your first name" />
-
-        <label htmlFor="lastName">Last Name: </label>
-        <input type="text" id="lastName" placeholder="Enter your last name" />
-
-        <label htmlFor="username">Username: </label>
-        <input type="text" id="username" placeholder="Enter your username" />
-
-        <label htmlFor="password">Password: </label>
-        <input
-          type="password"
-          id="password"
-          placeholder="Enter your password"
-        />
-
-        <input type="submit" />
+        <div>
+          <label htmlFor="firstName">First Name: </label>
+          <input
+            type="text"
+            id="firstName"
+            placeholder="Enter your first name"
+          />
+        </div>
+        <div>
+          <label htmlFor="lastName">Last Name: </label>
+          <input type="text" id="lastName" placeholder="Enter your last name" />
+        </div>
+        <div>
+          <label htmlFor="username">Username: </label>
+          <input type="text" id="username" placeholder="Enter your username" />
+        </div>
+        <div>
+          <label htmlFor="password">Password: </label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+          />
+        </div>
+        <input className={styles.submit} type="submit" />
       </form>
-    </>
+    </div>
   );
 }
 

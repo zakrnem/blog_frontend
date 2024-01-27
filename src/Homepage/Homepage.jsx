@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import styles from "./Homepage.module.css";
 import Posts from "../Posts/Posts";
 
-function Homepage({apiURL, setActiveElement}) {
+function Homepage({ apiURL, setActiveElement }) {
   useEffect(() => {
-    setActiveElement("home")
-    console.log("Executed")
-  }, [])
+    setActiveElement("home");
+    console.log("Executed");
+  }, []);
   const [page, setPage] = useState(1);
   const handleNextPage = () => {
     let count = page + 1;

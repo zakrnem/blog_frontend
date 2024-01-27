@@ -15,8 +15,8 @@ function Root() {
   );
   const [activeElement, setActiveElement] = useState("");
   useEffect(() => {
-    console.log(activeElement)
-  }, [activeElement])
+    console.log(activeElement);
+  }, [activeElement]);
   return (
     <>
       <Header
@@ -26,10 +26,26 @@ function Root() {
       <Outlet />
 
       <Routes errorElement={<ErrorPage />}>
-        <Route path="" element={<Homepage apiURL={apiURL} setActiveElement={setActiveElement} />} />
-        <Route path="/home" element={<Homepage apiURL={apiURL} setActiveElement={setActiveElement} />} />
-        <Route path="/signup" element={<SignupForm setActiveElement={setActiveElement} />} />
-        <Route path="/login" element={<LoginForm setActiveElement={setActiveElement} />} />
+        <Route
+          path=""
+          element={
+            <Homepage apiURL={apiURL} setActiveElement={setActiveElement} />
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <Homepage apiURL={apiURL} setActiveElement={setActiveElement} />
+          }
+        />
+        <Route
+          path="/signup"
+          element={<SignupForm setActiveElement={setActiveElement} />}
+        />
+        <Route
+          path="/login"
+          element={<LoginForm setActiveElement={setActiveElement} />}
+        />
       </Routes>
     </>
   );
