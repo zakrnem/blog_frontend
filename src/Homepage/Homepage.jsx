@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./Homepage.module.css";
 import Posts from "../Posts/Posts";
 
-function Homepage() {
+function Homepage(apiURL) {
   const [page, setPage] = useState(1);
   const handleNextPage = () => {
     let count = page + 1;
@@ -16,6 +16,9 @@ function Homepage() {
       <button className={styles.next_page} onClick={handleNextPage}>
         Older posts
       </button>
+
+      {/* <CommentForm apiURL={apiURL} /> */}
+      {/* <Post apiURL={apiURL} /> */}
     </div>
   );
 }

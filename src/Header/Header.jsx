@@ -1,6 +1,8 @@
 import styles from "./Header.module.css";
+import { Link } from "react-router-dom";
+import {useEffect} from "react"
 
-function Header() {
+function Header({activeElement, setActiveElement}) {
   const loggedIn = false;
   return (
     <div className={styles.header}>
@@ -9,17 +11,36 @@ function Header() {
         <div className={styles.title}>Zakrnem's Tech Blog</div>
       </div>
       <div className={styles.links}>
-        <button>Home</button>
+        <Link
+          to="home"
+          className={activeElement === "home" ? styles.active : ""}
+          onClick={() => setActiveElement("home")}
+        >
+          Home
+        </Link>
         {loggedIn && (
           <>
-            <button>Your comments</button>
-            <button>Your account</button>
-            <button>Sign out</button>
+            <Link>Your comments</Link>
+            <Link>Your account</Link>
+            <Link>Sign out</Link>
           </>
         )}
         {!loggedIn && (
           <>
-            <button>Sign up</button>
+            <Link
+              to="login"
+              className={activeElement === "login" ? styles.active : ""}
+              onClick={() => setActiveElement("login")}
+            >
+              Log in
+            </Link>
+            <Link
+              to="signup"
+              className={activeElement === "signup" ? styles.active : ""}
+              onClick={() => setActiveElement("signup")}
+            >
+              Sign up
+            </Link>
           </>
         )}
       </div>

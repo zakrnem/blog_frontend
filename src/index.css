@@ -13,6 +13,8 @@
   -moz-osx-font-smoothing: grayscale;
   --light-white: #ffffff;
   --main-color: rgb(112, 214, 255);
+  --hover-color: rgb(172, 221, 240);
+  --active-color: #b5b527;
 }
 
 a {
