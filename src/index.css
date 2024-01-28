@@ -72,8 +72,8 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-input[type=text],
-input[type=password] {
+input[type="text"],
+input[type="password"] {
   padding: 0.5rem 0.6rem;
   border-radius: 0.6rem;
   border: none;

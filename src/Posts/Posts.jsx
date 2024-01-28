@@ -1,18 +1,28 @@
 import { useState, useEffect } from "react";
 import styles from "./Posts.module.css";
 import { v4 as uuidv4 } from "uuid";
+import { Link, useNavigate } from "react-router-dom";
 
-function Posts(page) {
+function Posts({ page, setPostURL, setActiveElement }) {
+  const navigate = useNavigate();
   const [blogData, setBlogData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const handlePostClick = (e) => {
+    e.preventDefault();
+    const postId = e.target.id;
+    setPostURL(import.meta.env.VITE_API_URL + "/posts/" + postId);
+    setActiveElement("");
+    navigate("/post");
+  };
 
   useEffect(() => {
     if (error !== null) console.log(error);
   }, [error]);
 
   useEffect(() => {
-    const apiURL = import.meta.env.VITE_API_URL + "/posts/page/" + page.page;
+    const apiURL = import.meta.env.VITE_API_URL + "/posts/page/" + page;
     fetch(apiURL, { method: "get" })
       .then((response) => {
         if (!response.ok) {
@@ -33,7 +43,7 @@ function Posts(page) {
 
   return (
     <div className={styles.posts}>
-      <h2>Posts</h2>
+      <h1>Posts</h1>
       {loading && blogData.length < 1 && (
         <div className={styles.loading}>
           <div className={styles.loader} />
@@ -47,14 +57,16 @@ function Posts(page) {
         const date = blogData[index].date;
         const visible = blogData[index].visible;
         const commentsNumber = blogData[index].commentsNumber;
-        const url = blogData[index].url;
+        const id = blogData[index].id;
         return (
           <div key={key}>
             {visible && (
               <div className={styles.post}>
-                <a href={url}>
-                  <div className={styles.title}>{title}</div>
-                </a>
+                <Link to="#" onClick={handlePostClick}>
+                  <div className={styles.title} id={id}>
+                    {title}
+                  </div>
+                </Link>
                 <div className={styles.summary}>{summary}</div>
                 <div className={styles.date}>Date: {date}</div>
                 <div className={styles.comments}>

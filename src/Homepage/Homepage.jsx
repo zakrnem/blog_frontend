@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import styles from "./Homepage.module.css";
 import Posts from "../Posts/Posts";
 
-function Homepage({ apiURL, setActiveElement }) {
+function Homepage({ setActiveElement, setPostURL }) {
   useEffect(() => {
     setActiveElement("home");
-    console.log("Executed");
   }, []);
   const [page, setPage] = useState(1);
   const handleNextPage = () => {
@@ -15,14 +14,16 @@ function Homepage({ apiURL, setActiveElement }) {
 
   return (
     <div className={styles.homepage}>
-      <h1>Homepage</h1>
-      <Posts page={page} />
+      <Posts
+        page={page}
+        setPostURL={setPostURL}
+        setActiveElement={setActiveElement}
+      />
       <button className={styles.next_page} onClick={handleNextPage}>
         Older posts
       </button>
 
       {/* <CommentForm apiURL={apiURL} /> */}
-      {/* <Post apiURL={apiURL} /> */}
     </div>
   );
 }

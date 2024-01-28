@@ -22,6 +22,11 @@
   animation: spinner 1s linear infinite;
 }
 
+.title {
+  font-weight: bolder;
+  color: red;
+}
+
 @keyframes spinner {
   0% {
     transform: rotate(0deg);

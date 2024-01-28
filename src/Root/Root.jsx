@@ -13,10 +13,18 @@ function Root() {
   const [apiURL, setApiURL] = useState(
     "http://localhost:3000/api/client/posts/65a67b1e62e3bbd681d2d36d",
   );
+  const [postURL, setPostURL] = useState(
+    "http://localhost:3000/api/client/posts/",
+  );
   const [activeElement, setActiveElement] = useState("");
+
+  /*  
   useEffect(() => {
+    console.log(postData)
+  }, [postData])
+ useEffect(() => {
     console.log(activeElement);
-  }, [activeElement]);
+  }, [activeElement]); */
   return (
     <>
       <Header
@@ -29,13 +37,21 @@ function Root() {
         <Route
           path=""
           element={
-            <Homepage apiURL={apiURL} setActiveElement={setActiveElement} />
+            <Homepage
+              setActiveElement={setActiveElement}
+              setApiURL={setApiURL}
+              setPostURL={setPostURL}
+            />
           }
         />
         <Route
           path="/home"
           element={
-            <Homepage apiURL={apiURL} setActiveElement={setActiveElement} />
+            <Homepage
+              setActiveElement={setActiveElement}
+              setApiURL={setApiURL}
+              setPostURL={setPostURL}
+            />
           }
         />
         <Route
@@ -46,6 +62,7 @@ function Root() {
           path="/login"
           element={<LoginForm setActiveElement={setActiveElement} />}
         />
+        <Route path="/post" element={<Post postURL={postURL} />} />
       </Routes>
     </>
   );
