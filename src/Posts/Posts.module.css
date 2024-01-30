@@ -1,5 +1,8 @@
 .posts {
-  color: green;
+  display: grid;
+  justify-items: center;
+  padding: 1rem 2rem;
+  gap: 1rem;
 }
 
 .loading {
@@ -25,6 +28,12 @@
 .title {
   font-weight: bolder;
   color: red;
+}
+
+.post {
+  background-color: var(--grey);
+  border-radius: 1rem;
+  padding: 1.5rem;
 }
 
 @keyframes spinner {

@@ -17,6 +17,7 @@ function Root() {
     "http://localhost:3000/api/client/posts/",
   );
   const [activeElement, setActiveElement] = useState("");
+  const [page, setPage] = useState(1);
 
   /*  
   useEffect(() => {
@@ -30,6 +31,7 @@ function Root() {
       <Header
         activeElement={activeElement}
         setActiveElement={setActiveElement}
+        setPage={setPage}
       />
       <Outlet />
 
@@ -41,6 +43,8 @@ function Root() {
               setActiveElement={setActiveElement}
               setApiURL={setApiURL}
               setPostURL={setPostURL}
+              page={page}
+        setPage={setPage}
             />
           }
         />
@@ -51,6 +55,8 @@ function Root() {
               setActiveElement={setActiveElement}
               setApiURL={setApiURL}
               setPostURL={setPostURL}
+              page={page}
+        setPage={setPage}
             />
           }
         />

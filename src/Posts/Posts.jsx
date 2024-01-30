@@ -13,9 +13,14 @@ function Posts({ page, setPage, setPostURL, setActiveElement }) {
     e.preventDefault();
     const postId = e.target.id;
     setPostURL(import.meta.env.VITE_API_URL + "/posts/" + postId);
-    setPage(1)
+    setPage(1);
     setActiveElement("");
     navigate("/post");
+  };
+
+  const handleNextPage = () => {
+    let count = page + 1;
+    setPage(count);
   };
 
   useEffect(() => {
@@ -44,7 +49,6 @@ function Posts({ page, setPage, setPostURL, setActiveElement }) {
 
   return (
     <div className={styles.posts}>
-      <h1>Posts</h1>
       {loading && blogData.length < 1 && (
         <div className={styles.loading}>
           <div className={styles.loader} />
@@ -78,6 +82,11 @@ function Posts({ page, setPage, setPostURL, setActiveElement }) {
           </div>
         );
       })}
+      {blogData.length > 0 && (
+        <button className={styles.next_page} onClick={handleNextPage}>
+          Older posts
+        </button>
+      )}
     </div>
   );
 }

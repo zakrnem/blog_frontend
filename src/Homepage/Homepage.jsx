@@ -2,15 +2,11 @@ import { useState, useEffect } from "react";
 import styles from "./Homepage.module.css";
 import Posts from "../Posts/Posts";
 
-function Homepage({ setActiveElement, setPostURL }) {
+function Homepage({ setActiveElement, setPostURL, page, setPage }) {
   useEffect(() => {
     setActiveElement("home");
   }, []);
-  const [page, setPage] = useState(1);
-  const handleNextPage = () => {
-    let count = page + 1;
-    setPage(count);
-  };
+  
 
   return (
     <div className={styles.homepage}>
@@ -20,9 +16,6 @@ function Homepage({ setActiveElement, setPostURL }) {
         setPostURL={setPostURL}
         setActiveElement={setActiveElement}
       />
-      <button className={styles.next_page} onClick={handleNextPage}>
-        Older posts
-      </button>
 
       {/* <CommentForm apiURL={apiURL} /> */}
     </div>

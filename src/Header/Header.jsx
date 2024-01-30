@@ -2,7 +2,7 @@ import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
-function Header({ activeElement, setActiveElement }) {
+function Header({ activeElement, setActiveElement, setPage }) {
   const loggedIn = false;
   return (
     <div className={styles.header}>
@@ -14,7 +14,10 @@ function Header({ activeElement, setActiveElement }) {
         <Link
           to="home"
           className={activeElement === "home" ? styles.active : ""}
-          onClick={() => setActiveElement("home")}
+          onClick={() => {
+            setActiveElement("home")
+            setPage(1)
+          }}
         >
           Home
         </Link>

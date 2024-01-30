@@ -14,23 +14,23 @@ function Post({ postURL }) {
 
   useEffect(() => {
     fetch(postURL, { method: "get" })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(
-          `This is an HTTP error: The status is ${response.status}`,
-        );
-      }
-      return response.json();
-    })
-    .then((actualData) => setPostData(actualData))
-    .catch((err) => {
-      setError(err.message);
-    })
-    .finally(() => {
-      setLoading(false);
-    });
-  }, [postURL])
- 
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `This is an HTTP error: The status is ${response.status}`,
+          );
+        }
+        return response.json();
+      })
+      .then((actualData) => setPostData(actualData))
+      .catch((err) => {
+        setError(err.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [postURL]);
+
   const author = postData.author;
   const title = postData.title;
   const content = postData.content;
@@ -53,7 +53,7 @@ function Post({ postURL }) {
           Loading
         </div>
       )}
-      { dataLength > 0 && (
+      {dataLength > 0 && (
         <>
           <div className={styles.title}>{title}</div>
           <div className={styles.author}>Author: {author}</div>
