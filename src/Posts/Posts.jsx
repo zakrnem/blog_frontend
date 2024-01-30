@@ -3,7 +3,7 @@ import styles from "./Posts.module.css";
 import { v4 as uuidv4 } from "uuid";
 import { Link, useNavigate } from "react-router-dom";
 
-function Posts({ page, setPostURL, setActiveElement }) {
+function Posts({ page, setPage, setPostURL, setActiveElement }) {
   const navigate = useNavigate();
   const [blogData, setBlogData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,6 +13,7 @@ function Posts({ page, setPostURL, setActiveElement }) {
     e.preventDefault();
     const postId = e.target.id;
     setPostURL(import.meta.env.VITE_API_URL + "/posts/" + postId);
+    setPage(1)
     setActiveElement("");
     navigate("/post");
   };

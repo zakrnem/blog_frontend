@@ -16,6 +16,7 @@ function Homepage({ setActiveElement, setPostURL }) {
     <div className={styles.homepage}>
       <Posts
         page={page}
+        setPage={setPage}
         setPostURL={setPostURL}
         setActiveElement={setActiveElement}
       />
