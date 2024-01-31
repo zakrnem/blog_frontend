@@ -20,6 +20,7 @@
   --blue2: #3f51b5;
   --button-color: #1a1a1a;
   --grey: rgb(241, 241, 241);
+  --light-grey: #f9f9f9;
 }
 
 a {
@@ -95,6 +96,6 @@ input[type="password"] {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: var(--grey);
   }
 }
