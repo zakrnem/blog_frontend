@@ -7,7 +7,7 @@ function Header({ activeElement, setActiveElement, setPage }) {
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
-        <img src="/laptop-svgrepo-com.svg" />
+        <a href="https://github.com/zakrnem/"><img src="/laptop-svgrepo-com.svg" /></a>
         <div className={styles.title}>Zakrnem's Tech Blog</div>
       </div>
       <div className={styles.links}>
