@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import styles from "./Post.module.css";
 import { v4 as uuidv4 } from "uuid";
 import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 function Post({ postURL }) {
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [postData, setPostData] = useState({});
@@ -13,7 +15,10 @@ function Post({ postURL }) {
   }, [error]);
 
   useEffect(() => {
-    fetch(postURL, { method: "get" })
+    if (!postURL) {
+      navigate("/home");
+    } else {
+      fetch(postURL, { method: "get" })
       .then((response) => {
         if (!response.ok) {
           throw new Error(
@@ -29,6 +34,7 @@ function Post({ postURL }) {
       .finally(() => {
         setLoading(false);
       });
+    }
   }, [postURL]);
 
   const author = postData.author;

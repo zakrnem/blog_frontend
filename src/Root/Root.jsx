@@ -14,7 +14,7 @@ function Root() {
     "http://localhost:3000/api/client/posts/65a67b1e62e3bbd681d2d36d",
   );
   const [postURL, setPostURL] = useState(
-    "http://localhost:3000/api/client/posts/",
+    "",
   );
   const [activeElement, setActiveElement] = useState("");
   const [page, setPage] = useState(1);
