@@ -19,21 +19,21 @@ function Post({ postURL }) {
       navigate("/home");
     } else {
       fetch(postURL, { method: "get" })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(
-            `This is an HTTP error: The status is ${response.status}`,
-          );
-        }
-        return response.json();
-      })
-      .then((actualData) => setPostData(actualData))
-      .catch((err) => {
-        setError(err.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(
+              `This is an HTTP error: The status is ${response.status}`,
+            );
+          }
+          return response.json();
+        })
+        .then((actualData) => setPostData(actualData))
+        .catch((err) => {
+          setError(err.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
   }, [postURL]);
 
@@ -52,7 +52,7 @@ function Post({ postURL }) {
   }
 
   return (
-    <>
+    <div className={styles.post}>
       {loading && dataLength < 1 && (
         <div className={styles.loading}>
           <div className={styles.loader} />
@@ -62,26 +62,40 @@ function Post({ postURL }) {
       {dataLength > 0 && (
         <>
           <div className={styles.title}>{title}</div>
-          <div className={styles.author}>Author: {author}</div>
-          <div className={styles.date}>Date: {date}</div>
+          <div className={styles.footer}>
+            <img
+              src="./user-check-svgrepo-com.svg"
+              className={styles.thumbnail}
+            />
+            <div className={styles.info}>
+              <div className={styles.author}>{author}</div>
+              <div className={styles.date}>{date}</div>
+            </div>
+          </div>
           <div className={styles.content}>{content}</div>
+          <div className={styles.comments}>
+            <div className="section-title">Comments:</div>
+            {comments &&
+              Object.keys(comments).map((index) => {
+                const commentAuthor = comments[index].author;
+                const commentMessage = comments[index].message;
+                const parsedCommentDate = new Date(comments[index].createdAt);
+                const commentDate = format(parsedCommentDate, "MM-dd-yyyy");
+                const key = uuidv4();
+                return (
+                  <div className={styles.comment} key={key}>
+                    <div className={styles.commentAuthor}>{commentAuthor}</div>
+                    <div className={styles.commentMessage}>
+                      {commentMessage}
+                    </div>
+                    <div className={styles.commentDate}>{commentDate}</div>
+                  </div>
+                );
+              })}
+          </div>
         </>
       )}
-      {comments &&
-        Object.keys(comments).map((index) => {
-          const commentAuthor = comments[index].author;
-          const commentMessage = comments[index].message;
-          const commentDate = comments[index].createdAt;
-          const key = uuidv4();
-          return (
-            <div key={key}>
-              <div className={styles.commentAuthor}>{commentAuthor}</div>
-              <div className={styles.commentMessage}>{commentMessage}</div>
-              <div className={styles.commentDate}>{commentDate}</div>
-            </div>
-          );
-        })}
-    </>
+    </div>
   );
 }
 

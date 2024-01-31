@@ -23,6 +23,47 @@
   animation: spinner 1s linear infinite;
 }
 
+.post {
+  height: 100%;
+  display: grid;
+  align-content: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background-color: var(--light-grey);
+}
+
+.footer {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.author {
+  font-weight: bolder;
+}
+
+.thumbnail {
+  height: 3rem;
+}
+
+.content {
+  text-align: justify;
+}
+
+.comments {
+  display: grid;
+}
+
+.commentAuthor {
+  font-weight: bolder;
+}
+
+.comment {
+  display: grid;
+  gap: 0.15rem;
+  margin-bottom: 0.75rem;
+}
+
 @keyframes spinner {
   0% {
     transform: rotate(0deg);

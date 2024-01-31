@@ -6,7 +6,6 @@ function Homepage({ setActiveElement, setPostURL, page, setPage }) {
   useEffect(() => {
     setActiveElement("home");
   }, []);
-  
 
   return (
     <div className={styles.homepage}>

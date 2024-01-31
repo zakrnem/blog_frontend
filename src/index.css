@@ -80,6 +80,12 @@ input[type="password"] {
   background-color: var(--grey);
 }
 
+.section-title {
+  font-weight: bolder;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: var(--black);

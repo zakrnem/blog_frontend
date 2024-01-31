@@ -13,9 +13,7 @@ function Root() {
   const [apiURL, setApiURL] = useState(
     "http://localhost:3000/api/client/posts/65a67b1e62e3bbd681d2d36d",
   );
-  const [postURL, setPostURL] = useState(
-    "",
-  );
+  const [postURL, setPostURL] = useState("");
   const [activeElement, setActiveElement] = useState("");
   const [page, setPage] = useState(1);
 
@@ -44,7 +42,7 @@ function Root() {
               setApiURL={setApiURL}
               setPostURL={setPostURL}
               page={page}
-        setPage={setPage}
+              setPage={setPage}
             />
           }
         />
@@ -56,7 +54,7 @@ function Root() {
               setApiURL={setApiURL}
               setPostURL={setPostURL}
               page={page}
-        setPage={setPage}
+              setPage={setPage}
             />
           }
         />

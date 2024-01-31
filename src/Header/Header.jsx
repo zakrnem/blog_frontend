@@ -15,8 +15,8 @@ function Header({ activeElement, setActiveElement, setPage }) {
           to="home"
           className={activeElement === "home" ? styles.active : ""}
           onClick={() => {
-            setActiveElement("home")
-            setPage(1)
+            setActiveElement("home");
+            setPage(1);
           }}
         >
           Home
