@@ -16,11 +16,12 @@ function Root() {
   const [postURL, setPostURL] = useState("");
   const [activeElement, setActiveElement] = useState("");
   const [page, setPage] = useState(1);
+  const [auth, setAuth] = useState(false)
 
-  /*  
   useEffect(() => {
-    console.log(postData)
-  }, [postData])
+    console.log(auth)
+  }, [auth])
+  /* 
  useEffect(() => {
     console.log(activeElement);
   }, [activeElement]); */
@@ -30,6 +31,7 @@ function Root() {
         activeElement={activeElement}
         setActiveElement={setActiveElement}
         setPage={setPage}
+        auth={auth}
       />
       <Outlet />
 
@@ -64,7 +66,7 @@ function Root() {
         />
         <Route
           path="/login"
-          element={<LoginForm setActiveElement={setActiveElement} />}
+          element={<LoginForm setActiveElement={setActiveElement} setAuth={setAuth} />}
         />
         <Route path="/post" element={<Post postURL={postURL} />} />
       </Routes>

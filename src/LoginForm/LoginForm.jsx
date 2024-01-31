@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import styles from "./LoginForm.module.css";
+import { useNavigate } from "react-router-dom";
 
-function LoginForm({ setActiveElement }) {
+function LoginForm({ setActiveElement, setAuth }) {
+  const navigate = useNavigate();
+  const apiURL = "http://localhost:3000/api/client/login"
   useEffect(() => {
     setActiveElement("login");
   });
@@ -10,8 +13,25 @@ function LoginForm({ setActiveElement }) {
     e.preventDefault();
     const username = e.target.querySelector("#username").value;
     const password = e.target.querySelector("#password").value;
-    console.log([username, password]);
-    // Add fetch logic
+    const data = {username, password}
+    fetch(apiURL, { 
+      method: "post",
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then((response) => {
+      if (response.status !== 200) {
+        throw new Error(response.statusText);
+      }
+      setAuth(true)
+      return response.json();
+    })
+    .finally(() => {
+      navigate("/home");
+    });
   };
   return (
     <div className={styles.login}>

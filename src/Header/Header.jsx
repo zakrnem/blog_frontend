@@ -2,8 +2,7 @@ import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
-function Header({ activeElement, setActiveElement, setPage }) {
-  const loggedIn = false;
+function Header({ activeElement, setActiveElement, setPage, auth }) {
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
@@ -21,14 +20,14 @@ function Header({ activeElement, setActiveElement, setPage }) {
         >
           Home
         </Link>
-        {loggedIn && (
+        {auth && (
           <>
             <Link>Your comments</Link>
             <Link>Your account</Link>
             <Link>Sign out</Link>
           </>
         )}
-        {!loggedIn && (
+        {!auth && (
           <>
             <Link
               to="login"
