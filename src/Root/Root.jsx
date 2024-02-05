@@ -10,18 +10,36 @@ import SignupForm from "../SignupForm/SignupForm";
 import Header from "../Header/Header";
 
 function Root() {
-  const [apiURL, setApiURL] = useState(
-    "http://localhost:3000/api/client/posts/65a67b1e62e3bbd681d2d36d",
-  );
   const [postURL, setPostURL] = useState("");
   const [activeElement, setActiveElement] = useState("");
   const [page, setPage] = useState(1);
   const [auth, setAuth] = useState(false)
+  const isAuthURL = import.meta.env.VITE_API_URL + "/is_auth"
 
   useEffect(() => {
+    fetch(isAuthURL, { method: "get", credentials: "include" })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(
+          `This is an HTTP error: The status is ${response.status}`,
+        );
+      }
+      return response.json();
+    })
+    .then((response) => console.log(response))
+    .catch((err) => {
+      setError(err.message);
+    })
+/*     .finally(() => {
+      setLoading(false);
+    }); */
+  })
+
+
+  /* 
+    useEffect(() => {
     console.log(auth)
   }, [auth])
-  /* 
  useEffect(() => {
     console.log(activeElement);
   }, [activeElement]); */
@@ -32,6 +50,7 @@ function Root() {
         setActiveElement={setActiveElement}
         setPage={setPage}
         auth={auth}
+        setAuth={setAuth}
       />
       <Outlet />
 
@@ -41,7 +60,6 @@ function Root() {
           element={
             <Homepage
               setActiveElement={setActiveElement}
-              setApiURL={setApiURL}
               setPostURL={setPostURL}
               page={page}
               setPage={setPage}
@@ -53,7 +71,6 @@ function Root() {
           element={
             <Homepage
               setActiveElement={setActiveElement}
-              setApiURL={setApiURL}
               setPostURL={setPostURL}
               page={page}
               setPage={setPage}

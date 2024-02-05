@@ -1,8 +1,26 @@
 import styles from "./Header.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function Header({ activeElement, setActiveElement, setPage, auth }) {
+  const navigate = useNavigate();
+  const handleSignout = () => {
+    e.preventDefault()
+    const apiURL = import.meta.env.VITE_API_URL + "/logout"
+    fetch(apiURL, { 
+      method: "post"
+    })
+    .then((response) => {
+      if (response.status !== 200) {
+        throw new Error(response.statusText);
+      }
+      setAuth(false)
+      return response.json();
+    })
+    .finally(() => {
+      navigate("/home");
+    });
+  }
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
@@ -24,7 +42,7 @@ function Header({ activeElement, setActiveElement, setPage, auth }) {
           <>
             <Link>Your comments</Link>
             <Link>Your account</Link>
-            <Link>Sign out</Link>
+            <Link to="#" onClick={handleSignout}>Sign out</Link>
           </>
         )}
         {!auth && (

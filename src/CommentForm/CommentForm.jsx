@@ -1,11 +1,11 @@
 import styles from "./CommentForm.module.css";
 
-function CommentForm(apiURL) {
+function CommentForm({ apiURL }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const userComment = e.target.querySelector("#message").value;
     // Fetch logic not working
-    fetch(apiURL.apiURL, {
+    fetch(apiURL, {
       method: "POST",
       headers: {
         Accept: "application/json",

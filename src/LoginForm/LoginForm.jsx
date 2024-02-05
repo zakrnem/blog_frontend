@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function LoginForm({ setActiveElement, setAuth }) {
   const navigate = useNavigate();
-  const apiURL = "http://localhost:3000/api/client/login"
+  const apiURL = import.meta.env.VITE_API_URL + "/login"
   useEffect(() => {
     setActiveElement("login");
   });
