@@ -1,31 +1,37 @@
 import styles from "./CommentForm.module.css";
+import { useNavigate } from "react-router-dom";
 
-function CommentForm({ apiURL }) {
+function CommentForm({ postURL, setCommentForm }) {
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    const userComment = e.target.querySelector("#message").value;
-    // Fetch logic not working
-    fetch(apiURL, {
+    const userComment = e.target.parentElement.querySelector("#message").value
+    const message = { "message": userComment}
+    fetch(postURL, {
       method: "POST",
+      credentials: "include",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(userComment),
+      body: JSON.stringify(message),
     }).then((response) => {
-      if (response.status !== 200) {
+      if (!response.ok) {
         throw new Error(response.statusText);
       }
       return response.json();
-    });
+    }).catch((error) => {
+      console.error('Error:', error);
+   }).finally(() => {
+    setCommentForm(false)
+   });
   };
   return (
     <>
-      <div className={styles.title}>Submit a comment</div>
+      <div className="section-title">Submit a comment</div>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <label htmlFor="message">Message: </label>
-        <textarea id="message" rows="5" cols="40"></textarea>
-        <input type="submit" />
+        <textarea id="message" rows="5" cols="40" className={styles.textarea}></textarea>
+        <button className={styles.submit} onClick={handleSubmit}>Post comment</button>
       </form>
     </>
   );

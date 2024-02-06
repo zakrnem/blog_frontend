@@ -29,11 +29,8 @@ function Root() {
     .catch((err) => {
       setError(err.message);
     })
-    .finally(() => {
-      console.log("Auth: " + auth)
-    });
   })
-  
+
   return (
     <>
       <Header
@@ -76,7 +73,7 @@ function Root() {
           path="/login"
           element={<LoginForm setActiveElement={setActiveElement} setAuth={setAuth} />}
         />
-        <Route path="/post" element={<Post postURL={postURL} />} />
+        <Route path="/post" element={<Post postURL={postURL} auth={auth} />} />
       </Routes>
     </>
   );
