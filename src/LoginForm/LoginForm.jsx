@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function LoginForm({ setActiveElement }) {
   const navigate = useNavigate();
-  const apiURL = import.meta.env.VITE_API_URL + "/login"
+  const apiURL = import.meta.env.VITE_API_URL + "/login";
   useEffect(() => {
     setActiveElement("login");
   });
@@ -13,25 +13,25 @@ function LoginForm({ setActiveElement }) {
     e.preventDefault();
     const username = e.target.querySelector("#username").value;
     const password = e.target.querySelector("#password").value;
-    const data = {username, password}
-    fetch(apiURL, { 
+    const data = { username, password };
+    fetch(apiURL, {
       method: "post",
       credentials: "include",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     })
-    .then((response) => {
-      if (response.status !== 200) {
-        throw new Error(response.statusText);
-      }
-      return response.json();
-    })
-    .finally(() => {
-      navigate("/home");
-    });
+      .then((response) => {
+        if (response.status !== 200) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .finally(() => {
+        navigate("/home");
+      });
   };
   return (
     <div className={styles.login}>

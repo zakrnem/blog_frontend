@@ -1,30 +1,33 @@
 import styles from "./Header.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
-function Header({ activeElement, setActiveElement, setPage, auth }) {
-  const navigate = useNavigate();
+function Header({ activeElement, setActiveElement, setPage, auth, setAuth }) {
   const handleSignout = () => {
-    e.preventDefault()
-    const apiURL = import.meta.env.VITE_API_URL + "/logout"
-    fetch(apiURL, { 
-      method: "post"
+    const apiURL = import.meta.env.VITE_API_URL + "/logout";
+    fetch(apiURL, {
+      method: "post",
+      credentials: "include",
     })
-    .then((response) => {
-      if (response.status !== 200) {
-        throw new Error(response.statusText);
-      }
-      setAuth(false)
-      return response.json();
-    })
-    .finally(() => {
-      navigate("/home");
-    });
-  }
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+      .finally(() => {
+        setAuth(false)
+      });
+  };
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
-        <a href="https://github.com/zakrnem/"><img src="/laptop-svgrepo-com.svg" /></a>
+        <a href="https://github.com/zakrnem/">
+          <img src="/laptop-svgrepo-com.svg" />
+        </a>
         <div className={styles.title}>Zakrnem's Tech Blog</div>
       </div>
       <div className={styles.links}>
@@ -42,7 +45,9 @@ function Header({ activeElement, setActiveElement, setPage, auth }) {
           <>
             <Link>Your comments</Link>
             <Link>Your account</Link>
-            <Link to="#" onClick={handleSignout}>Sign out</Link>
+            <Link to="#" onClick={handleSignout}>
+              Sign out
+            </Link>
           </>
         )}
         {!auth && (

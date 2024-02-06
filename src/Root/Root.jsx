@@ -12,24 +12,24 @@ function Root() {
   const [postURL, setPostURL] = useState("");
   const [activeElement, setActiveElement] = useState("");
   const [page, setPage] = useState(1);
-  const [auth, setAuth] = useState(false)
-  const isAuthURL = import.meta.env.VITE_API_URL + "/is_auth"
+  const [auth, setAuth] = useState(false);
+  const isAuthURL = import.meta.env.VITE_API_URL + "/is_auth";
 
   useEffect(() => {
     fetch(isAuthURL, { method: "get", credentials: "include" })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(
-          `This is an HTTP error: The status is ${response.status}`,
-        );
-      }
-      return response.json();
-    })
-    .then((response) => setAuth(response))
-    .catch((err) => {
-      setError(err.message);
-    })
-  })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `This is an HTTP error: The status is ${response.status}`,
+          );
+        }
+        return response.json();
+      })
+      .then((response) => setAuth(response))
+      .catch((err) => {
+        setError(err.message);
+      });
+  });
 
   return (
     <>
@@ -71,7 +71,9 @@ function Root() {
         />
         <Route
           path="/login"
-          element={<LoginForm setActiveElement={setActiveElement} setAuth={setAuth} />}
+          element={
+            <LoginForm setActiveElement={setActiveElement} setAuth={setAuth} />
+          }
         />
         <Route path="/post" element={<Post postURL={postURL} auth={auth} />} />
       </Routes>

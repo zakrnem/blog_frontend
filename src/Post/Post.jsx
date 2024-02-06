@@ -10,10 +10,10 @@ function Post({ postURL, auth }) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [postData, setPostData] = useState({});
-  const [commentForm, setCommentForm] = useState(false)
+  const [commentForm, setCommentForm] = useState(false);
   const handleAddComm = () => {
-    setCommentForm(!commentForm)
-  }
+    setCommentForm(!commentForm);
+  };
 
   useEffect(() => {
     if (error !== null) console.log(error);
@@ -99,12 +99,13 @@ function Post({ postURL, auth }) {
               })}
           </div>
           {auth && !commentForm && (
-             <button className={styles.addComment} onClick={handleAddComm}>Add a comment</button>
+            <button className={styles.addComment} onClick={handleAddComm}>
+              Add a comment
+            </button>
           )}
           {auth && commentForm && (
             <CommentForm postURL={postURL} setCommentForm={setCommentForm} />
           )}
-         
         </>
       )}
     </div>
