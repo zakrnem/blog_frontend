@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import ErrorPage from "../error-page";
 import Homepage from "../Homepage/Homepage";
 import Post from "../Post/Post";
-import CommentForm from "../CommentForm/CommentForm";
 import LoginForm from "../LoginForm/LoginForm";
 import SignupForm from "../SignupForm/SignupForm";
 import Header from "../Header/Header";
@@ -26,23 +25,15 @@ function Root() {
       }
       return response.json();
     })
-    .then((response) => console.log(response))
+    .then((response) => setAuth(response))
     .catch((err) => {
       setError(err.message);
     })
-/*     .finally(() => {
-      setLoading(false);
-    }); */
+    .finally(() => {
+      console.log("Auth: " + auth)
+    });
   })
-
-
-  /* 
-    useEffect(() => {
-    console.log(auth)
-  }, [auth])
- useEffect(() => {
-    console.log(activeElement);
-  }, [activeElement]); */
+  
   return (
     <>
       <Header

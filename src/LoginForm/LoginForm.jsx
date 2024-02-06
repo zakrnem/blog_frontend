@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import styles from "./LoginForm.module.css";
 import { useNavigate } from "react-router-dom";
 
-function LoginForm({ setActiveElement, setAuth }) {
+function LoginForm({ setActiveElement }) {
   const navigate = useNavigate();
   const apiURL = import.meta.env.VITE_API_URL + "/login"
   useEffect(() => {
@@ -16,6 +16,7 @@ function LoginForm({ setActiveElement, setAuth }) {
     const data = {username, password}
     fetch(apiURL, { 
       method: "post",
+      credentials: "include",
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -26,7 +27,6 @@ function LoginForm({ setActiveElement, setAuth }) {
       if (response.status !== 200) {
         throw new Error(response.statusText);
       }
-      setAuth(true)
       return response.json();
     })
     .finally(() => {
