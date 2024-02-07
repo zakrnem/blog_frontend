@@ -1,18 +1,38 @@
 import { useEffect } from "react";
 import styles from "./SignupForm.module.css";
+import { useNavigate } from "react-router-dom";
 
 function SignupForm({ setActiveElement }) {
+  const navigate = useNavigate();
   useEffect(() => {
     setActiveElement("signup");
   });
+  const apiURL = import.meta.env.VITE_API_URL + "/signup";
   const handleSubmit = (e) => {
     e.preventDefault();
     const firstName = e.target.querySelector("#firstName").value;
     const lastName = e.target.querySelector("#lastName").value;
     const username = e.target.querySelector("#username").value;
     const password = e.target.querySelector("#password").value;
-    console.log({ firstName, lastName, username, password });
-    // Add fetch logic
+    const data = { firstName, lastName, username, password };
+    fetch(apiURL, {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        console.log(response.status)
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .finally(() => {
+        navigate("/home");
+      });
   };
   return (
     <div className={styles.signup}>
