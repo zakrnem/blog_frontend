@@ -46,3 +46,13 @@
   background-color: var(--active-color);
   transition: color ease-in-out 0.05s;
 }
+
+.account {
+  display: flex;
+  align-self: center;
+  gap: 0.25rem;
+}
+
+.userlogo {
+  height: 1.5rem;
+}

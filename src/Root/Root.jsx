@@ -13,8 +13,9 @@ function Root() {
   const [activeElement, setActiveElement] = useState("");
   const [page, setPage] = useState(1);
   const [auth, setAuth] = useState(false);
-  const isAuthURL = import.meta.env.VITE_API_URL + "/is_auth";
+  const [userName, setUserName] = useState("");
 
+  const isAuthURL = import.meta.env.VITE_API_URL + "/is_auth";
   useEffect(() => {
     fetch(isAuthURL, { method: "get", credentials: "include" })
       .then((response) => {
@@ -31,6 +32,25 @@ function Root() {
       });
   });
 
+  const getUserNameURL = import.meta.env.VITE_API_URL + "/user";
+  useEffect(() => {
+    if (auth) {
+      fetch(getUserNameURL, { method: "get", credentials: "include" })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(
+              `This is an HTTP error: The status is ${response.status}`,
+            );
+          }
+          return response.json();
+        })
+        .then((response) => setUserName(response))
+        .catch((err) => {
+          setError(err.message);
+        });
+    }
+  }, [auth]);
+
   return (
     <>
       <Header
@@ -39,6 +59,7 @@ function Root() {
         setPage={setPage}
         auth={auth}
         setAuth={setAuth}
+        userName={userName}
       />
       <Outlet />
 

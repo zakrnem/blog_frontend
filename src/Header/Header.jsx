@@ -2,7 +2,14 @@ import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
-function Header({ activeElement, setActiveElement, setPage, auth, setAuth }) {
+function Header({
+  activeElement,
+  setActiveElement,
+  setPage,
+  auth,
+  setAuth,
+  userName,
+}) {
   const handleSignout = () => {
     const apiURL = import.meta.env.VITE_API_URL + "/logout";
     fetch(apiURL, {
@@ -19,7 +26,7 @@ function Header({ activeElement, setActiveElement, setPage, auth, setAuth }) {
         console.error("Error:", error);
       })
       .finally(() => {
-        setAuth(false)
+        setAuth(false);
       });
   };
   return (
@@ -43,8 +50,10 @@ function Header({ activeElement, setActiveElement, setPage, auth, setAuth }) {
         </Link>
         {auth && (
           <>
-            <Link>Your comments</Link>
-            <Link>Your account</Link>
+            <Link to="#" className={styles.account}>
+              <img src="./user-svgrepo-com.svg" className={styles.userlogo} />
+              {userName.fullname}
+            </Link>
             <Link to="#" onClick={handleSignout}>
               Sign out
             </Link>
