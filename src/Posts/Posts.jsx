@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import styles from "./Posts.module.css";
 import { v4 as uuidv4 } from "uuid";
 import { Link, useNavigate } from "react-router-dom";
-import { format } from "date-fns";
 
 function Posts({ page, setPage, setPostURL, setActiveElement }) {
   const navigate = useNavigate();
@@ -60,8 +59,7 @@ function Posts({ page, setPage, setPostURL, setActiveElement }) {
         const key = uuidv4();
         const title = blogData[index].title;
         const summary = blogData[index].summary;
-        const parsedDate = new Date(blogData[index].date);
-        const date = format(parsedDate, "MM-dd-yyyy");
+        const date = blogData[index].date;
         const visible = blogData[index].visible;
         const commentsNumber = blogData[index].commentsNumber;
         const id = blogData[index].id;

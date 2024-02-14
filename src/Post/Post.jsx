@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "./Post.module.css";
 import { v4 as uuidv4 } from "uuid";
-import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import CommentForm from "../CommentForm/CommentForm";
 
@@ -45,14 +44,11 @@ function Post({ postURL, auth }) {
   const author = postData.author;
   const title = postData.title;
   const content = postData.content;
-  const dbDate = postData.createdAt;
-  let parsedDate;
   let date;
   let comments;
   const dataLength = Object.keys(postData).length;
   if (dataLength > 0) {
-    parsedDate = new Date(dbDate);
-    date = format(parsedDate, "MM-dd-yyyy");
+    date = postData.createdAt
     comments = postData.comments;
   }
 
@@ -84,8 +80,7 @@ function Post({ postURL, auth }) {
               Object.keys(comments).map((index) => {
                 const commentAuthor = comments[index].author;
                 const commentMessage = comments[index].message;
-                const parsedCommentDate = new Date(comments[index].createdAt);
-                const commentDate = format(parsedCommentDate, "MM-dd-yyyy");
+                const commentDate = comments[index].createdAt
                 const key = uuidv4();
                 return (
                   <div className={styles.comment} key={key}>
