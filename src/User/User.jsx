@@ -38,7 +38,8 @@ function User({ auth, user }) {
 
     return (
       <div className={styles.container}>
-        <h2>Welcome back {user.fullname}</h2>
+        <div className={styles.title}>Comments by {user.fullname}</div>
+        <div className={styles.separator}></div>
         <div className={styles.commentContainer}>
         { notEmptyData && userData.map((comment) => {
             const key = uuidv4();
