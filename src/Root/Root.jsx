@@ -7,13 +7,14 @@ import Post from "../Post/Post";
 import LoginForm from "../LoginForm/LoginForm";
 import SignupForm from "../SignupForm/SignupForm";
 import Header from "../Header/Header";
+import User from "../User/User";
 
 function Root() {
   const [postURL, setPostURL] = useState("");
   const [activeElement, setActiveElement] = useState("");
   const [page, setPage] = useState(1);
   const [auth, setAuth] = useState(false);
-  const [userName, setUserName] = useState("");
+  const [user, setUser] = useState([]);
 
   const isAuthURL = import.meta.env.VITE_API_URL + "/is_auth";
   useEffect(() => {
@@ -32,10 +33,10 @@ function Root() {
       });
   });
 
-  const getUserNameURL = import.meta.env.VITE_API_URL + "/user";
+  const getUserURL = import.meta.env.VITE_API_URL + "/user";
   useEffect(() => {
     if (auth) {
-      fetch(getUserNameURL, { method: "get", credentials: "include" })
+      fetch(getUserURL, { method: "get", credentials: "include" })
         .then((response) => {
           if (!response.ok) {
             throw new Error(
@@ -44,7 +45,7 @@ function Root() {
           }
           return response.json();
         })
-        .then((response) => setUserName(response))
+        .then((response) => setUser(response))
         .catch((err) => {
           setError(err.message);
         });
@@ -59,7 +60,7 @@ function Root() {
         setPage={setPage}
         auth={auth}
         setAuth={setAuth}
-        userName={userName}
+        user={user}
       />
       <Outlet />
 
@@ -93,10 +94,11 @@ function Root() {
         <Route
           path="/login"
           element={
-            <LoginForm setActiveElement={setActiveElement} setAuth={setAuth} />
+            <LoginForm setActiveElement={setActiveElement} />
           }
         />
         <Route path="/post" element={<Post postURL={postURL} auth={auth} />} />
+        <Route path="/user" element={<User auth={auth} user={user} />} />
       </Routes>
     </>
   );

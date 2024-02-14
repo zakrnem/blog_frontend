@@ -1,5 +1,5 @@
 import styles from "./Header.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function Header({
@@ -8,8 +8,9 @@ function Header({
   setPage,
   auth,
   setAuth,
-  userName,
+  user,
 }) {
+  const navigate = useNavigate();
   const handleSignout = () => {
     const apiURL = import.meta.env.VITE_API_URL + "/logout";
     fetch(apiURL, {
@@ -50,9 +51,9 @@ function Header({
         </Link>
         {auth && (
           <>
-            <Link to="#" className={styles.account}>
+            <Link to="user" className={styles.account}>
               <img src="./user-svgrepo-com.svg" className={styles.userlogo} />
-              {userName.fullname}
+              {user.fullname}
             </Link>
             <Link to="#" onClick={handleSignout}>
               Sign out
