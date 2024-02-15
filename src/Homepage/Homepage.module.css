@@ -2,3 +2,17 @@
   display: grid;
   align-content: center;
 }
+
+@media screen and (max-width: 900px) {
+  .homepage {
+    margin: 0 1rem;
+    align-self: center;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .homepage {
+    width: min(75%, 100ch);
+    align-self: center;
+  }
+}

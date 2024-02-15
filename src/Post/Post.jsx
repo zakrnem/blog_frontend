@@ -99,7 +99,7 @@ function Post({ postURL, auth }) {
             </button>
           )}
           {auth && commentForm && (
-            <CommentForm postURL={postURL} setCommentForm={setCommentForm} />
+            <CommentForm postURL={postURL} setCommentForm={setCommentForm} setPostData={setPostData} />
           )}
         </>
       )}

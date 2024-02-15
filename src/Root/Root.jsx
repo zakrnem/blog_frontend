@@ -62,7 +62,8 @@ function Root() {
         setAuth={setAuth}
         user={user}
       />
-      <Outlet />
+
+          <Outlet />
 
       <Routes errorElement={<ErrorPage />}>
         <Route

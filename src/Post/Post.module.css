@@ -24,10 +24,9 @@
 }
 
 .post {
-  height: 100%;
   display: grid;
-  align-content: center;
   gap: 1rem;
+  border-radius: 1rem;
   padding: 1rem 2rem;
   background-color: var(--light-grey);
 }
@@ -76,3 +75,19 @@
     transform: rotate(360deg);
   }
 }
+
+
+@media only screen and (max-width: 900px) {
+  .post {
+    margin: 0 1rem;
+    align-self: center;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .post {
+    width: min(75%, 100ch);
+    align-self: center;
+  }
+}
+
