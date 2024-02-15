@@ -48,7 +48,7 @@ function Post({ postURL, auth }) {
   let comments;
   const dataLength = Object.keys(postData).length;
   if (dataLength > 0) {
-    date = postData.createdAt
+    date = postData.createdAt;
     comments = postData.comments;
   }
 
@@ -80,7 +80,7 @@ function Post({ postURL, auth }) {
               Object.keys(comments).map((index) => {
                 const commentAuthor = comments[index].author;
                 const commentMessage = comments[index].message;
-                const commentDate = comments[index].createdAt
+                const commentDate = comments[index].createdAt;
                 const key = uuidv4();
                 return (
                   <div className={styles.comment} key={key}>
@@ -99,7 +99,11 @@ function Post({ postURL, auth }) {
             </button>
           )}
           {auth && commentForm && (
-            <CommentForm postURL={postURL} setCommentForm={setCommentForm} setPostData={setPostData} />
+            <CommentForm
+              postURL={postURL}
+              setCommentForm={setCommentForm}
+              setPostData={setPostData}
+            />
           )}
         </>
       )}

@@ -26,8 +26,8 @@ function CommentForm({ postURL, setCommentForm, setPostData }) {
         console.error("Error:", error);
       })
       .finally(() => {
-        setPostData({})
-        navigate("/post")
+        setPostData({});
+        navigate("/post");
         //setCommentForm(false);
       });
   };

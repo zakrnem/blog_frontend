@@ -63,7 +63,7 @@ function Root() {
         user={user}
       />
 
-          <Outlet />
+      <Outlet />
 
       <Routes errorElement={<ErrorPage />}>
         <Route
@@ -94,12 +94,20 @@ function Root() {
         />
         <Route
           path="/login"
-          element={
-            <LoginForm setActiveElement={setActiveElement} />
-          }
+          element={<LoginForm setActiveElement={setActiveElement} />}
         />
         <Route path="/post" element={<Post postURL={postURL} auth={auth} />} />
-        <Route path="/user" element={<User setActiveElement={setActiveElement} auth={auth} user={user} />} />
+        <Route
+          path="/user"
+          element={
+            <User
+              setActiveElement={setActiveElement}
+              auth={auth}
+              user={user}
+              setPostURL={setPostURL}
+            />
+          }
+        />
       </Routes>
     </>
   );

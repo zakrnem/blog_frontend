@@ -51,7 +51,10 @@ function Header({
         </Link>
         {auth && (
           <>
-            <Link to="user" className={`${styles.account} ${activeElement === "user" ? styles.active : ""}`}>
+            <Link
+              to="user"
+              className={`${styles.account} ${activeElement === "user" ? styles.active : ""}`}
+            >
               <img src="./user-svgrepo-com.svg" className={styles.userlogo} />
               {user.fullname}
             </Link>
