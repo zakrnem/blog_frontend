@@ -98,7 +98,7 @@ function Root() {
           }
         />
         <Route path="/post" element={<Post postURL={postURL} auth={auth} />} />
-        <Route path="/user" element={<User auth={auth} user={user} />} />
+        <Route path="/user" element={<User setActiveElement={setActiveElement} auth={auth} user={user} />} />
       </Routes>
     </>
   );

@@ -51,7 +51,7 @@ function Header({
         </Link>
         {auth && (
           <>
-            <Link to="user" className={styles.account}>
+            <Link to="user" className={`${styles.account} ${activeElement === "user" ? styles.active : ""}`}>
               <img src="./user-svgrepo-com.svg" className={styles.userlogo} />
               {user.fullname}
             </Link>
@@ -65,14 +65,12 @@ function Header({
             <Link
               to="login"
               className={activeElement === "login" ? styles.active : ""}
-              onClick={() => setActiveElement("login")}
             >
               Log in
             </Link>
             <Link
               to="signup"
               className={activeElement === "signup" ? styles.active : ""}
-              onClick={() => setActiveElement("signup")}
             >
               Sign up
             </Link>

@@ -3,10 +3,14 @@ import styles from "./User.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function User({ auth, user }) {
+function User({ setActiveElement, auth, user }) {
   const navigate = useNavigate();
   const [userData, setUserData] = useState([])
   const [notEmptyData, setNotEmptyData] = useState(false)
+
+  useEffect(() => {
+    setActiveElement("user");
+  });
 
   useEffect(() => {
     if (user.length !== 0) {
@@ -31,6 +35,10 @@ function User({ auth, user }) {
       })
     }      
   }, [user])
+
+  useEffect(() => {
+    console.log(userData)
+  }, [userData])
 
   useEffect(() => {
     if (!auth) navigate("/home")
