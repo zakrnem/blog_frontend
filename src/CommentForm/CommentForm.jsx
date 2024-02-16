@@ -1,7 +1,7 @@
 import styles from "./CommentForm.module.css";
 import { useNavigate } from "react-router-dom";
 
-function CommentForm({ postURL, setCommentForm, setPostData }) {
+function CommentForm({ postURL, setCommentForm }) {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,9 +26,7 @@ function CommentForm({ postURL, setCommentForm, setPostData }) {
         console.error("Error:", error);
       })
       .finally(() => {
-        setPostData({});
-        navigate("/post");
-        //setCommentForm(false);
+        setCommentForm(false);
       });
   };
   return (
