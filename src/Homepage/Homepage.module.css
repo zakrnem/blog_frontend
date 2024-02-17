@@ -1,6 +1,7 @@
 .homepage {
   display: grid;
   align-content: center;
+  margin: auto;
 }
 
 @media screen and (max-width: 900px) {

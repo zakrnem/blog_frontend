@@ -25,6 +25,7 @@
 
 .post {
   display: grid;
+  margin: auto;
   gap: 1rem;
   border-radius: 1rem;
   padding: 1rem 2rem;
