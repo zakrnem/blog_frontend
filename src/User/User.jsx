@@ -7,6 +7,7 @@ function User({ setActiveElement, auth, user, setPostURL }) {
   const navigate = useNavigate();
   const [userData, setUserData] = useState([]);
   const [notEmptyData, setNotEmptyData] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setActiveElement("user");
@@ -31,6 +32,7 @@ function User({ setActiveElement, auth, user, setPostURL }) {
           setError(err.message);
         })
         .finally(() => {
+          setLoading(false)
           setNotEmptyData(true);
         });
     }
@@ -44,29 +46,45 @@ function User({ setActiveElement, auth, user, setPostURL }) {
     setPostURL(import.meta.env.VITE_API_URL + "/posts/" + postId);
   };
 
+  useEffect(() => {
+    console.log("loading")
+    console.log(loading);
+    console.log("notEmptyData")
+    console.log(notEmptyData)
+  }, [loading]);
+
   return (
     <div className={styles.container}>
-      <div className={styles.title}>Comments by {user.fullname}</div>
-      <div className={styles.separator}></div>
-      <div className={styles.commentContainer}>
-        {notEmptyData &&
-          userData.map((comment) => {
-            const key = uuidv4();
-            return (
-              <div key={key} className={styles.comment}>
-                <Link
-                  to="/post"
-                  className={styles.postTitle}
-                  onClick={() => handleClick(comment.post._id)}
-                >
-                  {comment.post.title}
-                </Link>
-                <div className={styles.date}>{comment.createdAt}</div>
-                <div className={styles.commentText}>{comment.message}</div>
-              </div>
-            );
-          })}
-      </div>
+      {loading && !notEmptyData && (
+        <div className={styles.loading}>
+          <div className={styles.loader} />
+          Loading
+        </div>
+      )}
+      {notEmptyData && (
+        <>
+          <div className={styles.title}>Comments by {user.fullname}</div>
+          <div className={styles.separator}></div>
+          <div className={styles.commentContainer}>
+            {userData.map((comment) => {
+              const key = uuidv4();
+              return (
+                <div key={key} className={styles.comment}>
+                  <Link
+                    to="/post"
+                    className={styles.postTitle}
+                    onClick={() => handleClick(comment.post._id)}
+                  >
+                    {comment.post.title}
+                  </Link>
+                  <div className={styles.date}>{comment.createdAt}</div>
+                  <div className={styles.commentText}>{comment.message}</div>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 }
