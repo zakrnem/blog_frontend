@@ -1,6 +1,4 @@
 .container {
-  height: 100%;
-  align-content: center;
   display: grid;
   justify-items: center;
   gap: 0.75rem;
@@ -8,12 +6,13 @@
 }
 
 .commentContainer {
-  display: flex;
+  display: grid;
   gap: 1rem;
   padding: 0.5rem 1rem;
 }
 
 .comment {
+  display: grid; 
   padding: 0.5rem 1rem;
   border-radius: 1rem;
   background-color: var(--light-grey);
@@ -23,8 +22,9 @@
   font-size: 0.85rem;
 }
 
-.post {
+.postTitle {
   font-weight: bolder;
+  font-size: 1.1rem;
 }
 
 .title {
@@ -33,6 +33,25 @@
 }
 
 .separator {
-  width: 100%;
+  width: 90%;
   border-bottom: solid 2px var(--black);
+}
+
+.commentText {
+  text-align: justify;
+  margin-top: 0.5rem;
+}
+
+@media only screen and (max-width: 900px) {
+  .commentContainer {
+    margin: 0 1rem;
+    align-self: center;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .commentContainer {
+    width: min(75%, 100ch);
+    align-self: center;
+  }
 }

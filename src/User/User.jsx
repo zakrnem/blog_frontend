@@ -37,10 +37,6 @@ function User({ setActiveElement, auth, user, setPostURL }) {
   }, [user]);
 
   useEffect(() => {
-    console.log(userData);
-  }, [userData]);
-
-  useEffect(() => {
     if (!auth) navigate("/home");
   }, [auth]);
 
@@ -58,15 +54,15 @@ function User({ setActiveElement, auth, user, setPostURL }) {
             const key = uuidv4();
             return (
               <div key={key} className={styles.comment}>
-                <p className={styles.date}>{comment.createdAt}</p>
                 <Link
                   to="/post"
-                  className={styles.post}
+                  className={styles.postTitle}
                   onClick={() => handleClick(comment.post._id)}
                 >
                   {comment.post.title}
                 </Link>
-                <p>{comment.message}</p>
+                <div className={styles.date}>{comment.createdAt}</div>
+                <div className={styles.commentText}>{comment.message}</div>
               </div>
             );
           })}
