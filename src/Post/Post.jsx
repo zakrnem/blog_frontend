@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 import CommentForm from "../CommentForm/CommentForm";
 
-function Post({ postURL, auth }) {
+function Post({ postURL, auth, setActiveElement }) {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -13,6 +13,10 @@ function Post({ postURL, auth }) {
   const handleAddComm = () => {
     setCommentForm(!commentForm);
   };
+
+  useEffect(() => {
+    setActiveElement("");
+  });
 
   useEffect(() => {
     if (error !== null) console.log(error);

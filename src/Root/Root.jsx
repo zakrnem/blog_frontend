@@ -96,7 +96,7 @@ function Root() {
           path="/login"
           element={<LoginForm setActiveElement={setActiveElement} />}
         />
-        <Route path="/post" element={<Post postURL={postURL} auth={auth} />} />
+        <Route path="/post" element={<Post postURL={postURL} auth={auth} setActiveElement={setActiveElement} />} />
         <Route
           path="/user"
           element={

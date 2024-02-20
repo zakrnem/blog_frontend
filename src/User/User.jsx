@@ -46,13 +46,6 @@ function User({ setActiveElement, auth, user, setPostURL }) {
     setPostURL(import.meta.env.VITE_API_URL + "/posts/" + postId);
   };
 
-  useEffect(() => {
-    console.log("loading")
-    console.log(loading);
-    console.log("notEmptyData")
-    console.log(notEmptyData)
-  }, [loading]);
-
   return (
     <div className={styles.container}>
       {loading && !notEmptyData && (
