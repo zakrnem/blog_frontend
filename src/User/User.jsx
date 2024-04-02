@@ -32,7 +32,7 @@ function User({ setActiveElement, auth, user, setPostURL }) {
           setError(err.message);
         })
         .finally(() => {
-          setLoading(false)
+          setLoading(false);
           setNotEmptyData(true);
         });
     }

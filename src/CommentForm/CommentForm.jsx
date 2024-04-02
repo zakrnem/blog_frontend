@@ -38,6 +38,9 @@ function CommentForm({ postURL, setCommentForm }) {
           rows="5"
           cols="40"
           className={styles.textarea}
+          minLength={2}
+          maxLength={500}
+          required
         ></textarea>
         <button className={styles.submit} onClick={handleSubmit}>
           Post comment
